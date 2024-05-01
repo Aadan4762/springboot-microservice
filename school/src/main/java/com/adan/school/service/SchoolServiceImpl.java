@@ -1,5 +1,6 @@
 package com.adan.school.service;
 
+import com.adan.school.client.StudentClient;
 import com.adan.school.dto.SchoolRequest;
 import com.adan.school.dto.SchoolResponse;
 import com.adan.school.entity.FullSchoolResponse;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class SchoolServiceImpl implements SchoolService {
 
     private final SchoolRepository repository;
+    private final StudentClient client;
 
     public void saveSchool(SchoolRequest schoolRequest) {
         School school = School.builder()
@@ -60,6 +62,21 @@ public class SchoolServiceImpl implements SchoolService {
                 .id(school.getId())
                 .name(school.getName())
                 .email(school.getEmail())
+                .build();
+    }
+    public FullSchoolResponse findSchoolsWithStudents(Integer schoolId) {
+        var school = repository.findById(schoolId)
+                .orElse(
+                        School.builder()
+                                .name("NOT_FOUND")
+                                .email("NOT_FOUND")
+                                .build()
+                );
+        var students = client.findAllStudentsBySchool(schoolId);
+        return FullSchoolResponse.builder()
+                .name(school.getName())
+                .email(school.getEmail())
+                .students(students)
                 .build();
     }
 }
