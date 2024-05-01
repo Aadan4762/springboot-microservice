@@ -29,14 +29,6 @@ public class SchoolController {
         return ResponseEntity.ok(service.findAllSchools());
     }
 
-    @GetMapping("/with-students/{school-id}")
-    public ResponseEntity<FullSchoolResponse> findAllSchoolsWithStudents(
-            @PathVariable("school-id") Integer schoolId
-    ) {
-        return ResponseEntity.ok(service.findSchoolsWithStudents(schoolId));
-    }
-
-
     @GetMapping("/{id}")
     public ResponseEntity<SchoolResponse> findSchoolById(@PathVariable("id") Integer id) {
         SchoolResponse school = service.findSchoolById(id);

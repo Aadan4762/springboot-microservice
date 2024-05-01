@@ -4,7 +4,6 @@ import com.adan.school.dto.SchoolRequest;
 import com.adan.school.dto.SchoolResponse;
 import com.adan.school.entity.FullSchoolResponse;
 import com.adan.school.repo.SchoolRepository;
-import com.adan.school.client.StudentClient;
 import com.adan.school.entity.School;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 public class SchoolServiceImpl implements SchoolService {
 
     private final SchoolRepository repository;
-    private final StudentClient client;
 
     public void saveSchool(SchoolRequest schoolRequest) {
         School school = School.builder()
@@ -56,21 +54,6 @@ public class SchoolServiceImpl implements SchoolService {
         }).orElse(false);
     }
 
-    public FullSchoolResponse findSchoolsWithStudents(Integer schoolId) {
-        var school = repository.findById(schoolId)
-                .orElse(
-                        School.builder()
-                                .name("NOT_FOUND")
-                                .email("NOT_FOUND")
-                                .build()
-                );
-        var students = client.findAllStudentsBySchool(schoolId);
-        return FullSchoolResponse.builder()
-                .name(school.getName())
-                .email(school.getEmail())
-                .students(students)
-                .build();
-    }
 
     private SchoolResponse convertToResponse(School school) {
         return SchoolResponse.builder()

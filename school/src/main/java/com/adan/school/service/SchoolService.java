@@ -2,6 +2,7 @@ package com.adan.school.service;
 
 import com.adan.school.dto.SchoolRequest;
 import com.adan.school.dto.SchoolResponse;
+import com.adan.school.entity.FullSchoolResponse;
 
 import java.util.List;
 
