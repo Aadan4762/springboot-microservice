@@ -18,14 +18,14 @@ public class StudentController {
 
     private final StudentServiceImpl service;
 
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
 
     public void save(@RequestBody StudentRequest studentRequest) {
         service.saveStudent(studentRequest);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<StudentResponse>> findAllStudents() {
         return ResponseEntity.ok(service.findAllStudents());
     }
