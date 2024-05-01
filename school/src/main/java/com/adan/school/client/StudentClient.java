@@ -1,6 +1,6 @@
 package com.adan.school.client;
 
-import com.adan.school.Student;
+import com.adan.school.entity.Student;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

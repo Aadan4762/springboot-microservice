@@ -1,4 +1,4 @@
-package com.adan.school;
+package com.adan.school.entity;
 
 import lombok.*;
 
