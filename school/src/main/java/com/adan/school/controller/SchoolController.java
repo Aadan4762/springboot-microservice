@@ -2,7 +2,6 @@ package com.adan.school.controller;
 
 import com.adan.school.dto.SchoolRequest;
 import com.adan.school.dto.SchoolResponse;
-import com.adan.school.entity.FullSchoolResponse;
 import com.adan.school.service.SchoolServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,12 +26,6 @@ public class SchoolController {
     @GetMapping("/all")
     public ResponseEntity<List<SchoolResponse>> findAllSchools() {
         return ResponseEntity.ok(service.findAllSchools());
-    }
-    @GetMapping("/with-students/{school-id}")
-    public ResponseEntity<FullSchoolResponse> findAllSchools(
-            @PathVariable("school-id") Integer schoolId
-    ) {
-        return ResponseEntity.ok(service.findSchoolsWithStudents(schoolId));
     }
 
     @GetMapping("/{id}")
