@@ -4,6 +4,11 @@ eureka:
 server:
   port: 8222
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9090/realms/springboot-microservice-realm/protocol/openid-connect/certs
   application:
     name: gateway
   cloud:
@@ -25,3 +30,14 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+#all the request should be delegated to this realm
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        issuer-uri: http://localhost:9090/realms/springboot-microservice-realm
+
+
+
+
